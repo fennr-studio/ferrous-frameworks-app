@@ -1,6 +1,7 @@
 import type { Testimonial } from '@/types';
-
-const CDN = 'https://static.wixstatic.com/media';
+import civic from '@/assets/images/testimonial-civic.jpg';
+import solas from '@/assets/images/testimonial-solas.jpg';
+import zenith from '@/assets/images/testimonial-zenith.jpg';
 
 export const testimonials: Testimonial[] = [
   {
@@ -9,7 +10,7 @@ export const testimonials: Testimonial[] = [
       'Ferrous frameworks doesn\u2019t just build structures; they build legacies. Their attention to industrial detail on the solas refinery expansion was absolutely unparalleled.',
     author: 'J.P. MORGANSTERN',
     role: 'CEO, SOLAS CORP',
-    image: `${CDN}/c837a6_0d409063a8bb40a097436e39d4ed7d16~mv2.jpg`,
+    image: solas,
     alt: 'Refinery distillation columns in black and white',
     panel: 'orange',
     side: 'left',
@@ -20,7 +21,7 @@ export const testimonials: Testimonial[] = [
       'Precision and power. We needed a partner who understands the scale of industrial logistics. Anya and her team delivered uncompromising results.',
     author: 'ANYA PETROVA',
     role: 'DIRECTOR, ZENITH LOGISTICS',
-    image: `${CDN}/c837a6_0fd6f9d4ce314bec95c4995998e3da9f~mv2.jpg`,
+    image: zenith,
     alt: 'Interior of a large steel-framed factory hall in black and white',
     panel: 'blue',
     side: 'right',
@@ -31,7 +32,7 @@ export const testimonials: Testimonial[] = [
       'implementing large-scale civic infrastructure requires a partner who understands the weight of integrity. Ferrous frameworks is that partner.',
     author: 'DAVID CHEN',
     role: 'CIVIC PLANNER',
-    image: `${CDN}/c837a6_dc7e9e0d3afe41458083d34c8ef0d3fb~mv2.jpg`,
+    image: civic,
     alt: 'Concrete bridge underside viewed from below in black and white',
     panel: 'yellow',
     side: 'left',

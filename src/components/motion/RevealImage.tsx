@@ -37,6 +37,15 @@ export function RevealImage({
   const { ref, inView } = useInView<HTMLSpanElement>();
   const [loaded, setLoaded] = useState(false);
 
+  /*
+   * Statically imported images ship a tiny base64 blurDataURL, so Next can
+   * paint a real preview of the photo while the full file decodes. That beats
+   * the CSS blur below, which can only blur an image that has already
+   * arrived. Remote/string sources have no such data, so they keep the CSS
+   * fallback and must not be given placeholder="blur".
+   */
+  const hasBlur = typeof imageProps.src === 'object' && imageProps.src !== null;
+
   return (
     <span
       ref={ref}
@@ -48,6 +57,7 @@ export function RevealImage({
         <Image
           {...imageProps}
           alt={alt}
+          placeholder={hasBlur ? 'blur' : undefined}
           className={`${styles.image} ${className}`.trim()}
           data-loaded={loaded}
           data-tone={tone}

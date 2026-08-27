@@ -1,3 +1,11 @@
+import type { StaticImageData } from 'next/image';
+
+/**
+ * Images are StaticImageData, not strings: they are imported from
+ * src/assets so Next fingerprints them into /_next/static/media (served
+ * immutable for a year), derives intrinsic dimensions, and generates the
+ * blur placeholder. A bare URL string gets none of that.
+ */
 export type Service = { number: string; title: string; description: string };
 
 export type Project = {
@@ -9,9 +17,7 @@ export type Project = {
   category: string;
   /** Short label used on the homepage grid, e.g. "Commercial" */
   categoryShort: string;
-  image: string;
-  width: number;
-  height: number;
+  image: StaticImageData;
   alt: string;
   featured: boolean;
 };
@@ -21,7 +27,7 @@ export type Testimonial = {
   quote: string;
   author: string;
   role: string;
-  image: string;
+  image: StaticImageData;
   alt: string;
   panel: 'yellow' | 'orange' | 'blue';
   /** Which side the colour panel sits on at desktop widths. */
@@ -34,7 +40,7 @@ export type TeamMember = {
   name: string;
   role: string;
   bio: string;
-  image: string;
+  image: StaticImageData;
   alt: string;
 };
 

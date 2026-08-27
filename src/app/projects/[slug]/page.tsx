@@ -32,7 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: project.title,
     description: `${project.title} — ${project.category.replace(/_/g, ' ').toLowerCase()} by Ferrous Frameworks.`,
-    openGraph: { images: [{ url: project.image }] },
+    // .src: OG metadata needs a plain URL, not the StaticImageData object.
+    openGraph: { images: [{ url: project.image.src }] },
   };
 }
 

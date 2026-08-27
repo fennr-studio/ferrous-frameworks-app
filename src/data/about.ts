@@ -1,6 +1,11 @@
 import type { TeamMember, Value } from '@/types';
-
-const CDN = 'https://static.wixstatic.com/media';
+import aboutHero from '@/assets/images/about-hero.jpg';
+import aboutSnippet from '@/assets/images/about-snippet.jpg';
+import cta from '@/assets/images/cta.jpg';
+import hero from '@/assets/images/hero.jpg';
+import islaGrant from '@/assets/images/team-isla-grant.jpg';
+import leoValdez from '@/assets/images/team-leo-valdez.jpg';
+import marcusThorne from '@/assets/images/team-marcus-thorne.jpg';
 
 export const values: Value[] = [
   {
@@ -28,38 +33,38 @@ export const team: TeamMember[] = [
     name: 'Marcus Thorne',
     role: 'Chief Executive Officer',
     bio: "Leading with iron-clad integrity and a vision for industrial scale excellence since Ferrous' foundation.",
-    image: `${CDN}/c837a6_a5e1e5dfba0a4d9aa28e97fdb8836d3d~mv2.jpg`,
+    image: marcusThorne,
     alt: 'Portrait of Marcus Thorne',
   },
   {
     name: 'Isla Grant',
     role: 'Lead Engineer',
     bio: 'Precision-driven engineering expert ensuring every structure exceeds global safety and structural standards.',
-    image: `${CDN}/11062b_925e3a04f88244e7bf31142212769d93~mv2.jpg`,
+    image: islaGrant,
     alt: 'Portrait of Isla Grant on a construction site',
   },
   {
     name: 'Leo Valdez',
     role: 'Project Manager',
     bio: 'Mastering complex logistics to deliver structural superiority on every timeline without compromise.',
-    image: `${CDN}/c837a6_0d64224eed3f499381dfb0eadb304b14~mv2.jpg`,
+    image: leoValdez,
     alt: 'Portrait of Leo Valdez',
   },
 ];
 
 export const aboutHeroImage = {
-  src: `${CDN}/c837a6_466d93c415bf4f14ba734f3b5f8e63df~mv2.jpg`,
+  src: aboutHero,
   alt: 'Steel and concrete structure under construction',
 };
 export const aboutSnippetImage = {
-  src: `${CDN}/c837a6_6f061b4898424924b0b92e5f77db2b67~mv2.jpg`,
+  src: aboutSnippet,
   alt: 'Tower crane above a concrete frame in black and white',
 };
 export const heroImage = {
-  src: `${CDN}/c837a6_ff7d61482797482c98cf6ac162b673b1~mv2.jpg`,
+  src: hero,
   alt: 'Interior of a vast concrete-framed industrial hall with skylights',
 };
 export const ctaImage = {
-  src: `${CDN}/c837a6_c67c288fa8b44789b41327f572e77f93~mv2.jpg`,
+  src: cta,
   alt: 'Steel roof trusses against a cloudy sky in black and white',
 };
