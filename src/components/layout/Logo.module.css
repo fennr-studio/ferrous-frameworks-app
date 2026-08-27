@@ -1,0 +1,17 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  /* Measured gap between mark and wordmark: 17.5px. */
+  gap: var(--space-4);
+  color: var(--color-ink);
+}
+.mark {
+  /* 61.5 x 37 measured; the 5:3 viewBox supplies the height. */
+  inline-size: 3.875rem;
+  block-size: 2.325rem;
+}
+.word {
+  /* 40px renders "Ferrous" 143px wide — the reference measures 143.5. */
+  font-size: 2.5rem;
+  line-height: 1;
+}

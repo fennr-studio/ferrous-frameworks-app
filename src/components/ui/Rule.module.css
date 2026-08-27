@@ -1,0 +1,5 @@
+.rule {
+  border: 0;
+  border-block-start: var(--rule-width) solid var(--color-rule);
+  margin: 0;
+}

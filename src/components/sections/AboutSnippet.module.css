@@ -1,0 +1,49 @@
+.section {
+  padding-block: var(--section-py);
+}
+.grid {
+  display: grid;
+  gap: var(--space-12);
+  align-items: center;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8);
+}
+.tick {
+  border: 0;
+  border-block-start: var(--rule-width) solid var(--color-rule);
+  inline-size: 4rem;
+  margin: 0;
+}
+.plusGrid {
+  inline-size: 6rem;
+  block-size: 6rem;
+  color: var(--color-ink);
+}
+.title {
+  max-inline-size: 12ch;
+}
+.copy {
+  max-inline-size: 44ch;
+}
+.imageWrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+}
+.image {
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+@media (min-width: 60rem) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-24);
+  }
+  .imageWrap {
+    aspect-ratio: 4 / 5;
+  }
+}

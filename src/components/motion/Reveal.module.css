@@ -1,0 +1,45 @@
+/*
+ * The hidden state is scoped to `html.js` on purpose. That class is set by an
+ * inline script in the root layout, so:
+ *   - no JavaScript  -> the class never lands, nothing is ever hidden
+ *   - JavaScript     -> the class lands before first paint, so there is no
+ *                       flash of final-position content before the reveal
+ */
+
+:global(html.js) .reveal {
+  opacity: 0;
+  transition:
+    opacity var(--dur-slow) var(--ease-out) var(--reveal-delay, 0ms),
+    transform var(--dur-slow) var(--ease-out) var(--reveal-delay, 0ms);
+}
+
+:global(html.js) .rise {
+  transform: translate3d(0, var(--reveal-rise), 0);
+}
+:global(html.js) .left {
+  transform: translate3d(calc(-1 * var(--reveal-shift)), 0, 0);
+}
+:global(html.js) .right {
+  transform: translate3d(var(--reveal-shift), 0, 0);
+}
+:global(html.js) .scale {
+  transform: scale(0.94);
+}
+:global(html.js) .fade {
+  transform: none;
+}
+
+:global(html.js) .reveal[data-revealed='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Reduced motion: land in the final state with no travel and no fade. The
+   content still arrives, it just does not move to get there. */
+@media (prefers-reduced-motion: reduce) {
+  :global(html.js) .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

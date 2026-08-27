@@ -1,0 +1,22 @@
+.page {
+  animation: pageEnter var(--dur-slow) var(--ease-out) both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.75rem, 0);
+  }
+  to {
+    opacity: 1;
+    /* Resolves to `none`, so the finished element does not linger as a
+       containing block for any fixed-position descendant. */
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    animation: none;
+  }
+}

@@ -1,0 +1,24 @@
+.section {
+  padding-block: clamp(8rem, 18vh, 12rem) var(--section-py);
+}
+.title {
+  margin-block-end: var(--space-12);
+}
+.prose {
+  max-inline-size: 62ch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.prose h2 {
+  font-size: 1.5rem;
+  margin-block-start: var(--space-8);
+}
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.notice {
+  padding: var(--space-4);
+  background: var(--color-panel-yellow);
+}

@@ -1,0 +1,70 @@
+.mask {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* `fill` needs a positioned direct parent, so the overscale element has to be
+   positioned too rather than a plain wrapper. */
+.inner {
+  position: absolute;
+  inset: 0;
+}
+
+:global(html.js) .mask {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path var(--dur-slower) var(--ease-out) var(--reveal-delay, 0ms);
+}
+:global(html.js) .mask[data-revealed='true'] {
+  clip-path: inset(0 0 0 0);
+}
+
+:global(html.js) .inner {
+  transform: scale(1.08);
+  transition: transform var(--dur-slowest) var(--ease-out) var(--reveal-delay, 0ms);
+}
+:global(html.js) .mask[data-revealed='true'] .inner {
+  transform: none;
+}
+
+/* Blur-up. The grayscale variant restates the caller's filter because this
+   selector is more specific than theirs and would otherwise drop it mid-load. */
+/*
+ * Callers put `transition: transform ...` on their own .image class for hover
+ * scale. That is the same specificity as a bare `.image` here, so which one
+ * wins would come down to stylesheet order. The [data-loaded] hook makes this
+ * rule win deterministically — which means it must carry transform too, or the
+ * caller's hover transition would be dropped.
+ */
+.image[data-loaded] {
+  transition:
+    filter var(--dur-slow) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+.image[data-loaded='false'] {
+  filter: blur(14px);
+}
+.image[data-tone='grayscale'] {
+  filter: grayscale(1);
+}
+.image[data-tone='grayscale'][data-loaded='false'] {
+  filter: grayscale(1) blur(14px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html.js) .mask,
+  :global(html.js) .inner {
+    clip-path: none;
+    transform: none;
+    transition: none;
+  }
+  .image[data-loaded] {
+    transition: none;
+  }
+  .image[data-loaded='false'] {
+    filter: none;
+  }
+  .image[data-tone='grayscale'][data-loaded='false'] {
+    filter: grayscale(1);
+  }
+}

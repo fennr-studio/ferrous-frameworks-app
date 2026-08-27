@@ -1,0 +1,66 @@
+.section {
+  padding-block-end: var(--section-py);
+}
+/* Measured from the section hairline: eyebrow box at 23.5, item rules at 387. */
+.head {
+  padding-block: 1.46875rem 7.09375rem;
+}
+.grid {
+  display: grid;
+  gap: var(--space-12);
+  list-style: none;
+  padding: 0;
+}
+/*
+ * No flex gap. Each step is its own margin because the measured spacings are
+ * all different — a single gap would compound with the rule's margin and push
+ * everything below it down by the gap as well.
+ *
+ * Measured from each item's hairline: numeral ink +37.5, title ink +135.5,
+ * body ink +193.5.
+ */
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.itemRule {
+  border: 0;
+  border-block-start: var(--rule-width) solid var(--color-rule);
+  margin: 0 0 1.6875rem;
+}
+.number {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-numeral);
+  line-height: 1;
+  margin-block-end: 2.96875rem;
+}
+/* The body copy is held narrower than the 417px column — the reference's
+   longest line runs 353px and it breaks before "premium" even though the
+   column has room. Without this the text sets to a different rag. */
+.item > p {
+  max-inline-size: 24rem;
+}
+.title {
+  font-size: 1.6125rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-block-end: 1.625rem;
+}
+
+@media (min-width: 48rem) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    /* Measured 68px between columns — much wider than the 32px we had. */
+    /* 75px, which sizes each column to the reference's 417px. That width is
+       what makes the body copy wrap to four lines as it does there — at our
+       previous 421.7px "premium" pulled up onto line one. */
+    column-gap: 4.6875rem;
+  }
+}

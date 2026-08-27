@@ -1,0 +1,53 @@
+/*
+ * Measured off the reference, anchored on the hairline that opens each
+ * section. The two variants differ in more than alignment:
+ *
+ *            eyebrow ink   H2 cap   intro
+ *   Services      +27.5     +133.5   stacked under, 20.6px
+ *   Featured      +14.5     +149.5   right column behind a rule, body size
+ */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.stacked {
+  gap: 4.64375rem;
+}
+.split {
+  gap: 6.45625rem;
+}
+
+.row {
+  display: grid;
+  gap: 1.10625rem;
+}
+.title {
+  max-inline-size: 18ch;
+}
+.intro {
+  max-inline-size: 23.625rem;
+  font-size: var(--text-body);
+}
+
+/* Stacked: sits under the heading at a noticeably larger size, and runs wide
+   enough to break after "unwavering" as the reference does. */
+.stacked .intro {
+  max-inline-size: 34rem;
+  font-size: 1.29rem;
+}
+
+.ruled {
+  /* 70px measured from the vertical rule to the first character. */
+  padding-inline-start: 4.375rem;
+  border-inline-start: var(--rule-width) solid var(--color-rule);
+}
+
+/* Title and intro sit side by side only when there is room for both. */
+@media (min-width: 60rem) {
+  .split .row {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: var(--space-8);
+  }
+}

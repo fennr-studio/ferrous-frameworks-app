@@ -1,0 +1,33 @@
+.text {
+  /* The mask spans are inline-block, so the heading's own line-height still
+     drives the rhythm. Nothing here changes the type itself. */
+  display: block;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* The mask clips at the box edge, which would shave a descender. Pad the
+     box down and pull the same amount back off the layout so glyphs survive
+     without changing the heading's spacing. */
+  padding-block-end: 0.14em;
+  margin-block-end: -0.14em;
+}
+
+:global(html.js) .inner {
+  display: inline-block;
+  transform: translate3d(0, 110%, 0);
+  transition: transform var(--dur-slower) var(--ease-out) var(--word-delay, 0ms);
+}
+
+:global(html.js) .text[data-revealed='true'] .inner {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html.js) .inner {
+    transform: none;
+    transition: none;
+  }
+}

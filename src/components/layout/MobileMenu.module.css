@@ -1,0 +1,71 @@
+.toggle {
+  display: grid;
+  gap: 5px;
+  place-content: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.bar {
+  display: block;
+  inline-size: 1.5rem;
+  block-size: 2px;
+  background: var(--color-ink);
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+.barTop {
+  transform: translateY(7px) rotate(45deg);
+}
+.barHidden {
+  opacity: 0;
+}
+.barBottom {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.panel {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  background: var(--color-bg);
+}
+.panel[hidden] {
+  display: none;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+.link {
+  font-family: var(--font-family-mono);
+  font-size: clamp(2rem, 9vw, 3rem);
+  text-transform: uppercase;
+}
+.cta {
+  display: inline-block;
+  margin-block-start: var(--space-4);
+  padding: var(--space-3) var(--space-8);
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* Toggle exists only below the desktop breakpoint. */
+@media (min-width: 60rem) {
+  .toggle,
+  .panel {
+    display: none;
+  }
+}

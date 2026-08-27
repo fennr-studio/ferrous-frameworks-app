@@ -1,0 +1,35 @@
+.badge {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  /* 31px — measured off the yellow badge inside the reference's pill. */
+  inline-size: 1.9375rem;
+  block-size: 1.9375rem;
+  border-radius: var(--radius-pill);
+}
+.badge svg {
+  inline-size: 1.1rem;
+  block-size: 1.1rem;
+}
+.yellow {
+  background: var(--color-panel-yellow);
+  color: var(--color-ink);
+}
+.ink {
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+}
+
+.badge svg {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.badge {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge,
+  .badge svg {
+    transition: none;
+  }
+}

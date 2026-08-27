@@ -1,0 +1,90 @@
+.section {
+  padding-block-end: var(--section-py);
+}
+.head {
+  padding-block: var(--space-12) var(--space-16);
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+}
+.row {
+  display: grid;
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-24);
+  padding: var(--space-8);
+  margin: 0;
+  min-block-size: 22rem;
+}
+.yellow {
+  background: var(--color-panel-yellow);
+}
+.orange {
+  background: var(--color-panel-orange);
+}
+.blue {
+  background: var(--color-panel-blue);
+}
+.number {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-numeral);
+  line-height: 1;
+}
+.quoteBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.quote {
+  max-inline-size: 44ch;
+  margin: 0;
+}
+.author,
+.role {
+  display: block;
+  text-transform: uppercase;
+}
+.author {
+  font-size: 1.125rem;
+}
+.role {
+  font-size: var(--text-label);
+}
+.imageWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+.image {
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+@media (min-width: 60rem) {
+  .row {
+    grid-template-columns: 42fr 58fr;
+  }
+  /* Panel on the right: swap the visual order without touching DOM order,
+     so the reading order stays quote-then-image for screen readers. */
+  .reversed {
+    grid-template-columns: 58fr 42fr;
+  }
+  .reversed .panel {
+    order: 2;
+  }
+  .reversed .imageWrap {
+    order: 1;
+  }
+  .imageWrap {
+    aspect-ratio: auto;
+    min-block-size: 34rem;
+  }
+  .panel {
+    padding: var(--space-12);
+  }
+}

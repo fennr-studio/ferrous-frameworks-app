@@ -1,0 +1,71 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  /* Measured: both reference buttons stand 50px tall. */
+  min-block-size: 3.125rem;
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+/*
+ * Padding and gap per variant, measured rather than shared: the reference's
+ * pill is 237px wide and the outline button 257.5px, and they get there with
+ * different internal spacing — the outline button carries a much wider gap
+ * between its label and badge.
+ */
+.primary {
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+  gap: 4.20625rem;
+  padding-inline: var(--space-6) 1.0625rem;
+  padding-block: 0;
+}
+.primary:hover {
+  opacity: 0.85;
+}
+
+.outline {
+  border: var(--rule-width) solid var(--color-ink);
+  gap: 4.53125rem;
+  padding-inline: 1.46875rem 0.375rem;
+  padding-block: 0;
+}
+.outline:hover {
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+}
+
+.bare {
+  gap: var(--space-4);
+  padding: 0;
+  min-block-size: auto;
+}
+.bare:hover {
+  opacity: 0.7;
+}
+
+/* The arrow leads the hover: it travels a few pixels in the direction it
+   points while the badge itself grows very slightly. */
+.button:hover :global(.arrow-badge) svg,
+.button:focus-visible :global(.arrow-badge) svg {
+  transform: translateX(0.2rem);
+}
+.button:hover :global(.arrow-badge),
+.button:focus-visible :global(.arrow-badge) {
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:hover :global(.arrow-badge) svg,
+  .button:focus-visible :global(.arrow-badge) svg,
+  .button:hover :global(.arrow-badge),
+  .button:focus-visible :global(.arrow-badge) {
+    transform: none;
+  }
+}

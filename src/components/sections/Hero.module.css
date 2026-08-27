@@ -1,0 +1,109 @@
+/*
+ * Every number below is measured off the reference hero at a 1500px viewport,
+ * not chosen. Keeping them here rather than in tokens because they describe
+ * this one composition; the type sizes they depend on ARE tokens.
+ */
+
+.hero {
+  /* Puts the H1 cap-line at y=253. The clamp keeps it from eating a short
+     viewport whole; on anything tall it settles at the measured 232px. */
+  padding-block-start: clamp(9rem, 32vh, 14.5625rem);
+}
+.title {
+  /* 26ch fits "BUILDING THE FOUNDATIONS" (24ch) and forces the break before
+     "OF", which is exactly where the reference wraps. */
+  max-inline-size: 26ch;
+  margin-block-end: 2.625rem;
+}
+.row {
+  /* Two columns, not space-between: the reference does NOT push the button to
+     the container edge — it starts at 57.76% across, leaving a deliberate gap
+     to the right of it. */
+  display: grid;
+  grid-template-columns: 57.76% auto;
+  align-items: center;
+  /* No column gap: 57.76% IS the button's start, so any gap pushes it past
+     the measured position. row-gap still applies to the stacked fallback. */
+  column-gap: 0;
+  row-gap: var(--space-8);
+  margin-block-end: 2.8125rem;
+}
+.lede {
+  /* 40rem holds "…precision, forging" on line one and breaks before
+     "legacies", matching the reference's two-line set. */
+  max-inline-size: 40rem;
+}
+
+/* Narrow screens have no room for the measured two-column row. */
+@media (max-width: 59.999rem) {
+  .row {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}
+
+.media {
+  display: grid;
+}
+.imageWrap {
+  position: relative;
+  aspect-ratio: 16 / 11;
+}
+.image {
+  object-fit: cover;
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-16);
+  background: var(--color-panel-yellow);
+  padding: var(--space-8);
+  min-block-size: 18rem;
+}
+.asterisk {
+  inline-size: 5rem;
+  block-size: 5rem;
+  color: var(--color-ink);
+}
+.caption {
+  display: block;
+}
+.captionRule {
+  border: 0;
+  border-block-start: var(--rule-width) solid var(--color-rule);
+  margin-block-end: var(--space-8);
+}
+.caption p {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-caption);
+  text-align: end;
+}
+
+@media (min-width: 60rem) {
+  .media {
+    /* Measured split: the photo ends at 66.07% of the viewport. */
+    grid-template-columns: 66.07% 1fr;
+  }
+  .imageWrap {
+    aspect-ratio: auto;
+    min-block-size: 34rem;
+  }
+}
+
+/* The asterisk turns slowly and forever — the one piece of ambient motion on
+   the page. Everything else only moves in response to scroll or hover. */
+.asterisk {
+  animation: asteriskSpin 24s linear infinite;
+}
+@keyframes asteriskSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .asterisk {
+    animation: none;
+  }
+}

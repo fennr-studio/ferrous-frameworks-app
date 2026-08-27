@@ -1,0 +1,77 @@
+.hero {
+  padding-block: clamp(8rem, 18vh, 12rem) var(--section-py);
+}
+.title {
+  max-inline-size: 16ch;
+  margin-block-end: var(--space-16);
+}
+.heroGrid {
+  display: grid;
+  gap: var(--space-12);
+  align-items: start;
+}
+.lede {
+  max-inline-size: 60ch;
+}
+.heroImage {
+  position: relative;
+  aspect-ratio: 1 / 1;
+}
+.image {
+  object-fit: cover;
+}
+.section {
+  padding-block-end: var(--section-py);
+}
+.head {
+  padding-block: var(--space-12) var(--space-24);
+}
+.grid {
+  display: grid;
+  gap: var(--space-12);
+  list-style: none;
+  padding: 0;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.itemRule {
+  border: 0;
+  border-block-start: var(--rule-width) solid var(--color-rule);
+  margin: 0 0 var(--space-6);
+}
+.number {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+}
+.itemTitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.role {
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+.portrait {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  margin-block-end: var(--space-4);
+}
+
+@media (min-width: 60rem) {
+  .heroGrid {
+    grid-template-columns: 55fr 45fr;
+    gap: var(--space-24);
+  }
+}
+@media (min-width: 48rem) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+}

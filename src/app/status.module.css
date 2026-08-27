@@ -1,0 +1,32 @@
+.section {
+  padding-block: clamp(10rem, 24vh, 16rem) var(--section-py);
+}
+.code {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-numeral);
+  line-height: 1;
+}
+.title {
+  margin-block: var(--space-6) var(--space-6);
+}
+.copy {
+  max-inline-size: 44ch;
+  margin-block-end: var(--space-12);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+.retry {
+  min-block-size: 2.75rem;
+  padding: var(--space-3) var(--space-8);
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  cursor: pointer;
+}

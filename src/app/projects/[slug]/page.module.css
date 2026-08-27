@@ -1,0 +1,53 @@
+.article {
+  padding-block: clamp(8rem, 18vh, 12rem) var(--section-py);
+}
+.breadcrumb {
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  margin-block-end: var(--space-12);
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-block-end: var(--space-16);
+}
+.number {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-numeral);
+  line-height: 1;
+}
+.title {
+  max-inline-size: 16ch;
+}
+.category {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+}
+.imageWrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+}
+.image {
+  object-fit: cover;
+}
+.next {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  margin-block-start: var(--space-24);
+  padding-block-start: var(--space-8);
+  border-block-start: var(--rule-width) solid var(--color-rule);
+}
+.nextLabel {
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}

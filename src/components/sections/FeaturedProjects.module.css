@@ -1,0 +1,83 @@
+.section {
+  padding-block-end: var(--section-py);
+}
+/* Measured from the section hairline: eyebrow box at 10.5, meta row at 305. */
+.head {
+  padding-block: 0.65625rem 5.5rem;
+}
+.grid {
+  display: grid;
+  gap: var(--space-12);
+  list-style: none;
+  padding: 0;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+}
+.meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+/*
+ * NOT --text-numeral. The reference sets these project numerals at a 26px cap
+ * against the Services section's 40px, so they carry their own size.
+ */
+.number {
+  font-family: var(--font-family-mono);
+  font-size: 2.2875rem;
+  line-height: 1;
+}
+.category {
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+.rule {
+  border: 0;
+  border-block-start: var(--rule-width) solid var(--color-rule);
+  margin: 1.8125rem 0 3.5625rem;
+  inline-size: 100%;
+}
+.imageWrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+.image {
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+.card:hover .image {
+  transform: scale(1.03);
+}
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    transition: none;
+  }
+  .card:hover .image {
+    transform: none;
+  }
+}
+.title {
+  margin-block-start: var(--space-6);
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.more {
+  display: flex;
+  justify-content: flex-end;
+  margin-block-start: var(--space-16);
+}
+
+@media (min-width: 48rem) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    /* 45px measured — narrower than the Services section's 75px. */
+    column-gap: 2.8125rem;
+    row-gap: var(--space-12);
+  }
+}

@@ -1,0 +1,21 @@
+.rule {
+  border: 0;
+  border-block-start: var(--rule-width) solid var(--color-rule);
+  margin: 0;
+}
+
+:global(html.js) .rule {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-slowest) var(--ease-out);
+}
+:global(html.js) .rule[data-revealed='true'] {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html.js) .rule {
+    transform: none;
+    transition: none;
+  }
+}

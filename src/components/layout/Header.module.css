@@ -1,0 +1,86 @@
+/* The <header> element itself is styled by HeaderMotion.module.css. */
+.inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-6);
+  max-inline-size: var(--container-max);
+  margin-inline: auto;
+  /*
+   * Asymmetric on purpose. The reference measures a 47px gutter on the left
+   * (matching the body container) but only ~37px to the right of the CTA
+   * pill. Reproduced because it was measured, not because it is tidy — if it
+   * turns out to be an artefact of the source screenshot, collapse this back
+   * to a single var(--container-gutter).
+   */
+  padding: var(--space-6) 2.3125rem var(--space-6) var(--container-gutter);
+}
+/* Re-enable pointer events only on the interactive children, so the
+   transparent header bar doesn't block clicks on content beneath it. */
+.inner > * {
+  pointer-events: auto;
+}
+
+.nav {
+  display: none;
+  margin-inline-start: auto;
+  /* Measured gap from the nav column to the CTA pill is 150px; .inner already
+     contributes var(--space-6), so this makes up the rest. */
+  margin-inline-end: 7.56875rem;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+}
+.link {
+  position: relative;
+  font-size: var(--text-nav);
+}
+/* Underline drawn as a pseudo-element so it can sweep in from the left
+   instead of appearing all at once. */
+.link::after {
+  content: '';
+  position: absolute;
+  inset-block-end: -2px;
+  inset-inline: 0;
+  block-size: var(--rule-width);
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.link:hover::after,
+.link:focus-visible::after {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link::after {
+    transition: none;
+  }
+}
+.cta {
+  display: none;
+}
+
+@media (min-width: 60rem) {
+  .nav,
+  .cta {
+    display: block;
+  }
+}
+
+.brand {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.brand {
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.brand:hover {
+  opacity: 0.7;
+}

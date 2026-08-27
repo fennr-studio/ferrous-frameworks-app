@@ -1,0 +1,75 @@
+.header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 100;
+  /* Transparent at rest: the reference lets page content show through. */
+  pointer-events: none;
+  /*
+   * The background is deliberately NOT transitioned.
+   *
+   * This fade was a race against content sliding up into the header band, and
+   * a single wheel tick outruns any duration short enough to still read as a
+   * fade — which left page text ghosting through the bar behind the nav. The
+   * fill now lands the moment it is needed. Only the hairline fades, which is
+   * enough to keep the change from feeling like a hard snap.
+   */
+  /*
+   * Hiding is a SLIDE, not a fade: the bar travels up off its own top edge and
+   * is simply gone. Fading in place reads as the header dissolving where it
+   * stands, which is not the same movement at all.
+   *
+   * No opacity change on purpose — translating the full height already clears
+   * it, and cross-fading at the same time muddies the exit.
+   *
+   * `visibility` transitions at 0s but with a DELAY, which is what keeps this
+   * accessible: hiding waits for the slide to land before flipping to hidden,
+   * showing flips back instantly. An element parked off-screen is still
+   * focusable otherwise — an invisible target sitting in the tab order.
+   */
+  transition:
+    transform var(--dur-slow) var(--ease-inout),
+    visibility 0s linear 0s,
+    box-shadow var(--dur-fast) var(--ease-inout);
+}
+
+.header[data-hidden='true'] {
+  transform: translate3d(0, -100%, 0);
+  visibility: hidden;
+  transition:
+    transform var(--dur-slow) var(--ease-inout),
+    visibility 0s linear var(--dur-slow),
+    box-shadow var(--dur-fast) var(--ease-inout);
+}
+
+/* Once scrolled, the bar picks up the page colour and a hairline so nav text
+   never sits directly on a photograph. */
+.header[data-scrolled='true'] {
+  background-color: var(--color-bg);
+  box-shadow: 0 var(--rule-width) 0 0 var(--color-rule);
+}
+
+/*
+ * No entrance animation on the header.
+ *
+ * It used to fade the logo, nav and CTA down from -0.75rem on mount. With
+ * `fill-mode: both` and staggered delays that left the primary navigation
+ * shifted up and fully invisible for the first ~300ms of every page load,
+ * and 1.2s to fully settle — and in dev it replayed on every Fast Refresh.
+ * Persistent chrome should just be there. The only thing that animates now
+ * is the background, once the page leaves the top.
+ */
+
+/*
+ * Reduced motion keeps the header put rather than hiding it instantly.
+ *
+ * The global reduce rule collapses every duration to ~0, which would turn this
+ * slide into the header snapping out of existence on each scroll — worse than
+ * the motion it is meant to spare. Chrome that never moves is the kind option.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .header[data-hidden='true'] {
+    transform: none;
+    visibility: visible;
+  }
+}
